@@ -3,7 +3,7 @@ const taskList = document.querySelector('#taskList');
 const noTasksMessage = document.querySelector('#noTasksMessage');
 
 const tasks = [];
-const savedTasks = JSON.parse(localStorage.getItem('tasks'));
+const savedTasks = localStorage.getItem('tasks');
 if (savedTasks) {
     const tasksFromLS = JSON.parse(savedTasks);
     tasks.push(...tasksFromLS);
@@ -43,8 +43,18 @@ function renderTask(task) {
     }" class="border p-2 mb-2 flex justify-between items-center ${task.done ? 'bg-slate-300' : ''}">
         <span class="${task.done ? 'line-through' : ''}">${task.text}</span>
         <div>
-          <button data-action="complete" class="bg-green-500 text-white p-1 mr-2 cursor-pointer">✔</button>
-          <button data-action="delete" class="bg-red-500 text-white p-1 cursor-pointer">✖</button>
+          <button data-action="complete" class="bg-green-500 text-white p-1 mr-2 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M5 13l4 4L19 7"></path>
+            </svg>
+          </button>
+          <button data-action="delete" class="bg-red-500 text-white p-1 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
         </div>
       </li>
 
